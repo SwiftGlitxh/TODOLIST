@@ -43,16 +43,28 @@ while True:
 			os.system('cls')
 		else:	
 			item = input('[-] Remove from lists: ')
+			if item == '*':
+				clearList()
+			else:
+				with open('wordlist.txt','w') as x:
+					if item in lists:
+						replaced = lists.replace(f'{item}', '')
+						# Write
+						x.write(replaced)
+						os.system('cls')
+					else:
+
+						print(' "' + item+'" was not found in your lists')
+						sleep(3)
+						os.system('cls')
+	def clearList():
+		remove_everything = input('\n[*] Are you sure you want to remove everything?')
+		if remove_everything == 'y':
 			with open('wordlist.txt','w') as x:
-				if item in lists:
-					replaced = lists.replace(f'{item}', '')
-					# Write
-					x.write(replaced)
-					os.system('cls')
-				else:
-					print(' "' + item+'" was not found in your lists')
-					sleep(3)
-					os.system('cls')
+				x.write('cleared')
+			print('[!] Completed')
+			sleep(3)
+			os.system('cls')
 # View TODO lists 
 	def todo():
 		number = 0
